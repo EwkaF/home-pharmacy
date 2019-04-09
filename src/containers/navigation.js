@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 import {AppBar, Typography, Toolbar} from '@material-ui/core';
 import Home from './Home'
+import NotFound from './NotFound';
 
 
 class Navigation extends Component {
@@ -25,8 +26,8 @@ class Navigation extends Component {
       </Toolbar>
     </AppBar>
            <Route exact path="/" component={Home} />
-
           <Route path="/login" component={Login} />
+          <Route path="*" component={NotFound} />
           </div>
     )
   }
