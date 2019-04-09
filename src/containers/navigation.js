@@ -5,54 +5,38 @@ import {
   Route,
   Link
 } from 'react-router-dom';
-import { Container, Navbar, NavItem, Nav } from 'react-bootstrap';
+import {AppBar, Typography, Toolbar} from '@material-ui/core';
+import Home from './Home'
 
 
 class Navigation extends Component {
   render() {
     return (
-      <Container>
-
-        <Navbar bg="dark" variant="dark">
-          <Navbar.Brand>
-            <Link to="/">Home Pharmacy</Link>
-          </Navbar.Brand>
-
-<Navbar.Collapse>
-          <Nav pullRight>
-            <Link to="/signup">
-              <NavItem>Signup</NavItem>
-            </Link>
-            <Link to="/login">
-              <NavItem>Login</NavItem>
-            </Link>
-          </Nav>
-        </Navbar.Collapse>
-
-          {/* <Route exact path="/" component={Home} /> */}
+      <div>
+      <AppBar position="static">
+      <Toolbar>
+        <Typography variant="h4" color="inherit" style={{ flex: 1 }} >
+        <Link to="/">Home Pharmacy</Link>
+        </Typography>
+        <Typography variant="h4" color="inherit" >
+        <Link to="/signup">Sign up</Link>
+        <Link to="/login">login</Link>
+        </Typography>
+      </Toolbar>
+    </AppBar>
+           <Route exact path="/" component={Home} />
 
           <Route path="/login" component={Login} />
-        </Navbar>
-
-      </Container>
+          </div>
     )
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 export default Navigation;
+
+
+
+
+
+
+
+
