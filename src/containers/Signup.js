@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TextField, Button} from '@material-ui/core';
+import { TextField, Button, Grid} from '@material-ui/core';
 
 class Signup extends Component {
     constructor(props) {
@@ -8,7 +8,7 @@ class Signup extends Component {
       this.state = {
         name: "",
         password: "",
-        passwordReapeated: ""
+        confirmPassword: ""
       };
     }
   
@@ -20,13 +20,19 @@ class Signup extends Component {
     };
   
     validateForm() {
-      return this.state.name.length > 0 && this.state.password.length > 0 && this.state.passwordReapeated.length > 0;
+      return this.state.name.length > 0 && this.state.password.length > 0 && this.state.confirmPassword.length > 0;
     }
 
   
     render() {
       return (
-        <div>
+        
+        <Grid
+  container
+  direction="column"
+  justify="flex-start"
+  alignItems="center"
+>
       
          <TextField
           id="name"
@@ -51,12 +57,12 @@ class Signup extends Component {
         />
 
            <TextField
-          id="passwordRepeated"
-          name="passwordReapeated"
+          id="confirmPassword"
+          name="confirmPassword"
           type="password"
-          label="Repeat password"
-          value={this.state.passwordReapeated}
-          onChange={this.handleChange('passwordReapeated')}
+          label="confirmPassword"
+          value={this.state.confirmPassword}
+          onChange={this.handleChange('confirmPassword')}
           margin="normal"
           variant="outlined"
         />
@@ -64,8 +70,8 @@ class Signup extends Component {
          <Button variant="contained" color="primary" disabled={!this.validateForm()} >
         Submit
       </Button>
-        </div>
-       
+        
+       </Grid>
       );
     }
   }
