@@ -1,0 +1,17 @@
+{
+    "users":[
+        {
+        "id":"",
+        "name": "",
+        "password": "",
+        "medicinesList": [
+            {"name": "",
+            "dateOfExp":"",
+            "despription": "",
+            "category": ""
+            
+            }
+        ]
+        }
+    ]
+}
