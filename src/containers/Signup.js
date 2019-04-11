@@ -20,8 +20,30 @@ class Signup extends Component {
     };
   
     validateForm() {
-      return this.state.name.length > 0 && this.state.password.length > 0 && this.state.confirmPassword.length > 0;
+      return this.state.name.length > 0 && this.state.password.length > 0 && this.state.confirmPassword.length > 0 && this.state.password === this.state.confirmPassword;
     }
+
+    handleFormSubmit = event => {
+      event.preventDefault();
+      var user ={
+        name: this.state.name,
+        password: this.state.password
+      }
+      
+  
+      fetch(' http://localhost:3004/users',{
+          method: "POST",
+          body: JSON.stringify(user),
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+        }).then(response => {
+          response.json().then(data =>{
+            console.log("Successful" + data);
+          })
+      })
+    } 
 
   
     render() {
@@ -67,7 +89,7 @@ class Signup extends Component {
           variant="outlined"
         />
 
-         <Button variant="contained" color="primary" disabled={!this.validateForm()} >
+         <Button variant="contained" color="primary" disabled={!this.validateForm()} onClick={this.handleFormSubmit} >
         Submit
       </Button>
         
