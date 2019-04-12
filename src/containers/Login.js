@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TextField, Button} from '@material-ui/core';
+import { TextField, Button, Grid} from '@material-ui/core';
 
 class Login extends Component {
     constructor(props) {
@@ -34,39 +34,14 @@ class Login extends Component {
   
     render() {
       return (
-        // <div className="Login">
-        //   <form onSubmit={this.handleSubmit}>
-        //     <FormGroup controlId="email" >
-        //       <FormLabel>Email</FormLabel>
-        //       <FormControl
-        //         autoFocus
-        //         type="email"
-        //         value={this.state.email}
-        //         onChange={this.handleChange}
-        //       />
-        //     </FormGroup>
-        //     <FormGroup controlId="password">
-        //       <FormLabel>Password</FormLabel>
-        //       <FormControl
-        //         value={this.state.password}
-        //         onChange={this.handleChange}
-        //         type="password"
-        //       />
-        //     </FormGroup>
-        //     <Button
-        //     variant="primary"
-        //       block
-              
-        //       disabled={!this.validateForm()}
-        //       type="submit"
-        //     >
-        //       Login
-        //     </Button>
-        //   </form>
-        // </div>
-
        
-        <div>
+       
+        <Grid
+        container
+        direction="column"
+        justify="flex-start"
+        alignItems="center"
+      >
       
          <TextField
           id="name"
@@ -93,7 +68,7 @@ class Login extends Component {
          <Button variant="contained" color="primary" disabled={!this.validateForm()} >
         Submit
       </Button>
-        </div>
+        </Grid>
        
       );
     }
