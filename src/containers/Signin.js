@@ -1,53 +1,72 @@
 import React, { Component } from 'react';
-import { TextField, Button, Grid} from '@material-ui/core';
+import { TextField, Button, Grid, Typography } from '@material-ui/core';
 
 class Signin extends Component {
-    constructor(props) {
-      super(props);
-  
-      this.state = {
-        name: "",
-        password: ""
-      };
-    }
-  
-    handleChange = name => event => {
-      console.log(event.target.value)
-      this.setState({
-        [name]: event.target.value,
-      });
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      name: "",
+      password: "",
+      warnings: ''
     };
-  
-    validateForm() {
-      return this.state.name.length > 0 && this.state.password.length > 0;
+  }
+
+  handleChange = name => event => {
+    console.log(event.target.value)
+    this.setState({
+      [name]: event.target.value
+     
+    });
+  };
+
+  validateForm =() => {
+    return this.state.name.length > 0 && this.state.password.length > 0;
+  }
+
+  handleAuthentication =() => {
+    if ( typeof this.props.authenticated === 'function' ){
+      this.props.authenticated();
     }
+    
+  }
+  handleFormSubmit = event => {
+    event.preventDefault();
+
+    fetch(' http://localhost:3004/users?name=' + this.state.name).then(resp => {
+      if (resp.ok) {
+        return resp.json();
+      } else
+        throw new Error('Błąd sieci!');
+    }).then(data => {
+      console.log(data[0])
+      let user = data[0]
+      if (user.password === this.state.password) {
+        this.handleAuthentication()
+        alert("Ok")
+      }
+      else {
+        console.log("Nieprawidłowe hasło")
+        this.setState({
+          warnings: "Incorrect username or password"
+        })
+      }
+    })
+  }
 
 
-    handleFormSubmit = event => {
-      event.preventDefault();
-      
-      fetch(' http://localhost:3004/users?name='+ this.state.name)
-          .then(response => {
-            console.log(response)
-          // response.json()
-          // .then(data =>{
-          //   console.log("Successful" + data);
-          // })
-      })
-    } 
-  
-    render() {
-      return (
-       
-       
-        <Grid
+  render() {
+    return (
+
+
+      <Grid
         container
         direction="column"
         justify="flex-start"
         alignItems="center"
       >
-      
-         <TextField
+
+        <TextField
           id="name"
           name="name"
           type="text"
@@ -68,14 +87,16 @@ class Signin extends Component {
           margin="normal"
           variant="outlined"
         />
+        <Typography variant="h4" color="inherit" >{this.state.warnings}</Typography>
 
-         <Button variant="contained" color="primary" disabled={!this.validateForm()} onClick={this.handleFormSubmit}>
-        Submit
+        <Button variant="contained" color="primary" disabled={!this.validateForm()} onClick={this.handleFormSubmit}>
+          Submit
       </Button>
-        </Grid>
-       
-      );
-    }
+
+      </Grid>
+
+    );
   }
+}
 
 export default Signin;
