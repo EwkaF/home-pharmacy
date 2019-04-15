@@ -43,7 +43,7 @@ class Signin extends Component {
       let user = data[0]
       if (user.password === this.state.password) {
         this.handleAuthentication()
-        alert("Ok")
+      
       }
       else {
         console.log("Nieprawidłowe hasło")

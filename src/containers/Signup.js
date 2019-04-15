@@ -23,6 +23,11 @@ class Signup extends Component {
       return this.state.name.length > 0 && this.state.password.length > 0 && this.state.confirmPassword.length > 0 && this.state.password === this.state.confirmPassword;
     }
 
+    handleAuthentication =() => {
+      if ( typeof this.props.authenticated === 'function' ){
+        this.props.authenticated();
+      }
+    }
     handleFormSubmit = event => {
       event.preventDefault();
       var user ={
@@ -41,6 +46,7 @@ class Signup extends Component {
         }).then(response => {
           response.json().then(data =>{
             console.log("Successful" + data);
+            this.handleAuthentication()
           })
       })
     } 
