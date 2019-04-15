@@ -19,8 +19,9 @@ class Navigation extends Component {
     };
   }
   
-  userHasAuthenticated = authenticated => {
-    this.setState({ isAuthenticated: authenticated });
+  userHasAuthenticated = () => {
+    this.setState({ isAuthenticated: true});
+    console.log("działa")
   }
 
 
@@ -39,8 +40,10 @@ class Navigation extends Component {
           </Toolbar>
         </AppBar>
         <Route exact path="/" component={Home} />
-        <Route path="/signup" component={Signup} />
-        <Route path="/signin" component={Signin} />
+        <Route path="/signup" component={Signup} authenticated={this.userHasAuthenticated}/>
+        {/* <Route path="/signin" component={Signin} authenticated={this.userHasAuthenticated}/> */}
+        <Route path="/signin" component={() => (<Signin authenticated={this.userHasAuthenticated} />)}/>
+        
         <Route path="*" component={NotFound} />
       </div>
     )
