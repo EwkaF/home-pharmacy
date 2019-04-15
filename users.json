@@ -1,17 +1,30 @@
 {
-    "users":[
+  "users": [
+    {
+      "id": "",
+      "name": "",
+      "password": "",
+      "medicinesList": [
         {
-        "id":"",
-        "name": "",
-        "password": "",
-        "medicinesList": [
-            {"name": "",
-            "dateOfExp":"",
-            "despription": "",
-            "category": ""
-            
-            }
-        ]
+          "name": "",
+          "dateOfExp": "",
+          "despription": "",
+          "category": ""
         }
-    ]
+      ]
+    },
+    {
+      "name": "ewa",
+      "password": "ewa",
+      "id": "8tPjo6J",
+      "medicinesList": [
+        {
+          "name": "aspiryna",
+          "dateOfExp": "maj 2019",
+          "despription": "",
+          "category": "flu"
+        }
+      ]
+    }
+  ]
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { TextField, Button, Grid} from '@material-ui/core';
 
-class Login extends Component {
+class Signin extends Component {
     constructor(props) {
       super(props);
   
@@ -21,16 +21,20 @@ class Login extends Component {
     validateForm() {
       return this.state.name.length > 0 && this.state.password.length > 0;
     }
-  
-    // handleChange = event => {
-    //   this.setState({
-    //     [event.target.id]: event.target.value
-    //   });
-    // }
-  
-    // handleSubmit = event => {
-    //   event.preventDefault();
-    // }
+
+
+    handleFormSubmit = event => {
+      event.preventDefault();
+      
+      fetch(' http://localhost:3004/users?name='+ this.state.name)
+          .then(response => {
+            console.log(response)
+          // response.json()
+          // .then(data =>{
+          //   console.log("Successful" + data);
+          // })
+      })
+    } 
   
     render() {
       return (
@@ -65,7 +69,7 @@ class Login extends Component {
           variant="outlined"
         />
 
-         <Button variant="contained" color="primary" disabled={!this.validateForm()} >
+         <Button variant="contained" color="primary" disabled={!this.validateForm()} onClick={this.handleFormSubmit}>
         Submit
       </Button>
         </Grid>
@@ -74,4 +78,4 @@ class Login extends Component {
     }
   }
 
-export default Login;
+export default Signin;
