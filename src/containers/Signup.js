@@ -32,7 +32,8 @@ class Signup extends Component {
       event.preventDefault();
       var user ={
         name: this.state.name,
-        password: this.state.password
+        password: this.state.password,
+        id: this.state.name
       }
       
   
