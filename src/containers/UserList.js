@@ -8,14 +8,15 @@ class UserList extends Component {
     }
   }
  
-componentDidMount(){
-  fetch(' http://localhost:3004/users/${this.props.match.params.id}`')
-}
+// componentDidMount(){
+//   fetch(' http://localhost:3004/users/${this.props.match.params.id}`')
+// }
   
   render() {
     return (
       <div>
-        Tu bedzie lista
+        <h1>Witaj {this.props.user}</h1>
+        Tu bedzie Twoja lista
       </div>
     )
   }

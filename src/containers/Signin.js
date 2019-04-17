@@ -12,6 +12,7 @@ class Signin extends Component {
     };
   }
 
+
   handleChange = name => event => {
     console.log(event.target.value)
     this.setState({
@@ -43,6 +44,8 @@ class Signin extends Component {
       let user = data[0]
       if (user.password === this.state.password) {
         this.handleAuthentication()
+        console.log(this.context)
+        // this.context.history.push("/user")
       }
       else {
         console.log("Nieprawidłowe hasło")
