@@ -9,7 +9,7 @@ class UserList extends Component {
   }
  
 componentDidMount(){
-  fetch(' http://localhost:3004/users')
+  fetch(' http://localhost:3004/users/${this.props.match.params.id}`')
 }
   
   render() {

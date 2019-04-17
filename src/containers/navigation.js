@@ -17,12 +17,15 @@ class Navigation extends Component {
     super(props);
 
     this.state = {
-      isAuthenticated: false
+      isAuthenticated: false,
+      user: null
     };
   }
 
-  userHasAuthenticated = () => {
-    this.setState({ isAuthenticated: true });
+  userHasAuthenticated = (user) => {
+    this.setState({ isAuthenticated: true,
+      user: user
+     });
     console.log("działa");
 
   }
@@ -47,7 +50,7 @@ class Navigation extends Component {
           Using the created list you can control the expiration date of your medicines. You can add descriptions to your medicines, for example the dosage that your doctor prescribed.Or you can search your home pharmacy in categories...</Typography>
     </div>
 
-    let main = <Redirect to="/user"></Redirect>
+    let main = <Redirect to="/user/:id"></Redirect>
 
     let mainDisplay = this.state.isAuthenticated ? main : welcome;
     return (
@@ -65,6 +68,10 @@ class Navigation extends Component {
 
         <Route exact path="/" component={Home} />
         <Route path="/signup" component={() => (<Signup authenticated={this.userHasAuthenticated} />)} />
+        {/* zmienić na to: */}
+        {/* <Route 
+        path="/signin" 
+        render={props => <Signin {...props}  authenticated={this.userHasAuthenticated} />} /> */}
         <Route path="/signin" component={() => (<Signin authenticated={this.userHasAuthenticated} />)} />
         <Route path="/user" component={UserList} />
         <Route path="*" component={NotFound} />
