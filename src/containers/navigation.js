@@ -53,11 +53,11 @@ class Navigation extends Component {
           Using the created list you can control the expiration date of your medicines. You can add descriptions to your medicines, for example the dosage that your doctor prescribed.Or you can search your home pharmacy in categories...</Typography>
     </div>
 
-    // let main = <Redirect to={"/" + this.state.user}></Redirect>
+    let main = <Redirect to={"/" + this.state.user}></Redirect>
 
 
 
-    // let mainDisplay = this.state.isAuthenticated ? main : welcome;
+    let mainDisplay = this.state.isAuthenticated ? main : welcome;
     return (
       <div>
         <AppBar position="static">
@@ -69,18 +69,21 @@ class Navigation extends Component {
           </Toolbar>
         </AppBar>
 
-        {/* {mainDisplay} */}
+        {mainDisplay}
 
         <Switch>
-          {/* <Route exact path="/" component={Home} /> */}
-           <Route path="/" exact  render={() => (this.state.isAuthenticated ? <Home/> : <Redirect to={"/"+ this.state.user} />)}/> 
-          <Route path="/signup" component={() => (<Signup authenticated={this.userHasAuthenticated} />)} />
-          {/* zmienić na to: */}
-          {/* <Route 
+          <Route exact path="/" component={Home} />
+           {/* <Route exact path="/"  render={() => (!this.state.isAuthenticated ? <h1>Witaj Ewa</h1> : <Redirect to={"/user"} />)}/>  */}
+          <Route 
         path="/signin" 
-        render={props => <Signin {...props}  authenticated={this.userHasAuthenticated} />} /> */}
-          <Route path="/signin" component={() => (<Signin authenticated={this.userHasAuthenticated} />)} />
-          <Route path={"/" + this.state.user} component={UserList} />
+        render={props => <Signin {...props}  authenticated={this.userHasAuthenticated} />} />
+          <Route 
+        path="/signup" 
+        render={props => <Signup {...props}  authenticated={this.userHasAuthenticated} />} />
+          <Route 
+        path={"/"+ this.state.user} 
+        render={props => <UserList {...props}  user={this.state.user} />} />
+          {/* <Route path={"/" + this.state.user} component={UserList} /> */}
           <Route component={NotFound} />
         </Switch>
       </div>
