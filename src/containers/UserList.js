@@ -1,4 +1,8 @@
 import React, { Component } from 'react'
+import AddNewItem from './AddNewItem'
+import ItemList from './ItemList'
+
+
 
 class UserList extends Component {
   constructor(props){
@@ -9,7 +13,7 @@ class UserList extends Component {
   }
  
 // componentDidMount(){
-//   fetch(' http://localhost:3004/users/${this.props.match.params.id}`')
+//   fetch(' http://localhost:3004/users/${this.props.user}`')
 // }
   
   render() {
@@ -17,6 +21,9 @@ class UserList extends Component {
       <div>
         <h1>Witaj {this.props.user}</h1>
         Tu bedzie Twoja lista
+
+        <AddNewItem />
+        <ItemList />
       </div>
     )
   }
