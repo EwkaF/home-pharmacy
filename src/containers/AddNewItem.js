@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { TextField, Button, Grid, Typography } from '@material-ui/core';
+import { TextField, Button,FormControl, InputLabel, Select, Input, MenuProps, MenuItem, Grid, Typography } from '@material-ui/core';
 import category from '../category'
 
 export class AddNewItem extends Component {
@@ -8,9 +8,36 @@ export class AddNewItem extends Component {
 
         this.state = {
             name: "",
+            category: [],
             warnings: ''
         };
     }
+    handleChange = name => event => {
+        console.log(event.target.value)
+        this.setState({
+          [name]: event.target.value
+          
+         
+        });
+      };
+
+      handleSelectChange = event => {
+        this.setState({ category: event.target.value });
+      };
+    
+      handleChangeMultiple = event => {
+        const { options } = event.target;
+        const value = [];
+        for (let i = 0, l = options.length; i < l; i += 1) {
+          if (options[i].selected) {
+            value.push(options[i].value);
+          }
+        }
+        this.setState({
+          category: value,
+        });
+      };
+    
     render() {
         return (
             <Grid
@@ -50,30 +77,23 @@ export class AddNewItem extends Component {
                     margin="normal"
                     variant="outlined"
                 />
-                <TextField
-                    id="category"
-                    select
-                    label="category"
-                    // className={classes.textField}
-                    value={this.state.name}
-                    // onChange={this.handleChange('currency')}
-                    // SelectProps={{
-                    //     native: true,
-                    //     MenuProps: {
-                    //         className: classes.menu,
-                    //     },
-                    // }}
 
-                    margin="normal"
-                    variant="outlined"
-                >
-                    {category.map(option => (
-                        <option key={option} value={option}>
-                            {option}
-                        </option>
-                    ))}
-                </TextField>
-
+       <FormControl >
+          <InputLabel htmlFor="select-multiple">Category</InputLabel>
+          <Select
+            multiple
+            value={this.state.category}
+            onChange={this.handleSelectChange}
+            input={<Input id="select-multiple" />}
+            // MenuProps={MenuProps}
+          >
+            {category.map(name => (
+              <MenuItem key={name} value={name}>
+                {name}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
             </Grid>
         )
     }
