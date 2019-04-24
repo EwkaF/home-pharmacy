@@ -13,9 +13,21 @@ class UserList extends Component {
     }
   }
 
-  // componentDidMount(){
-  //   fetch(' http://localhost:3004/users/${this.props.user}`')
-  // }
+  componentDidMount(){
+    fetch(' http://localhost:3004/users/'+ this.props.user).then( resp => {
+      if (resp.ok)
+       return resp.json();
+      else
+        throw new Error('Błąd sieci!');
+    }).then( data => {
+      console.log('Moje dane:', data.medicinesList);
+      this.setState({
+        medcineList: data.medicinesList
+      })
+    }).catch( err => {
+      console.log('Błąd!', err);
+    });
+  }
 
   render() {
     return (
@@ -28,8 +40,9 @@ class UserList extends Component {
           <Typography variant="display3" style ={{textTransform:"capitalize"}}>Welcome {this.props.user}!</Typography>
   
         <AddNewMedcine />
-          <ItemList />
         </Grid>
+          <ItemList items={this.state.medcineList}/>
+        
 
 
 
