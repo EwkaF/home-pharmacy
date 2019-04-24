@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import AddNewItem from './AddNewItem'
+import AddNewMedcine from './AddNewMedcine'
 import ItemList from './ItemList'
 
 
@@ -22,7 +22,7 @@ class UserList extends Component {
         <h1>Witaj {this.props.user}</h1>
         Tu bedzie Twoja lista
 
-        <AddNewItem />
+        <AddNewMedcine />
         <ItemList />
       </div>
     )
