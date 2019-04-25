@@ -14,6 +14,8 @@ export class Form extends Component {
 
         this.state = {
             name: "",
+            expDate: "",
+            description:"",
             category: [],
             warnings: ''
         };
@@ -31,30 +33,30 @@ export class Form extends Component {
     };
 
 
-    // handleClick =(e) =>{
-    //     e.preventDefault();
-    //     var newItem ={
-    //       userId: this.props.user,
-    //       name: this.state.name,
-    //       expDate: this.state.expDate,
-    //       description: this.state.description,
-    //       category: this.state.category
-    //     }
+    handleClick =(e) =>{
+        e.preventDefault();
+        var newItem ={
+          userId: this.props.user,
+          name: this.state.name,
+          expDate: this.state.expDate,
+          description: this.state.description,
+          category: this.state.category
+        }
     
-    //     fetch(' http://localhost:3004/users/'+ this.props.user + '/medicinesList',{
-    //       method: "POST",
-    //       body: JSON.stringify(newItem),
-    //       headers: {
-    //         'Accept': 'application/json',
-    //         'Content-Type': 'application/json'
-    //       },
-    //     }).then(response => {
-    //       response.json().then(data =>{
-    //         console.log("Successful" + data);
+        fetch(' http://localhost:3004/users/'+ this.props.user + '/medicinesList',{
+          method: "POST",
+          body: JSON.stringify(newItem),
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+        }).then(response => {
+          response.json().then(data =>{
+            console.log("Successful" + data);
             
-    //       })
-    //   })
-    //   }
+          })
+      })
+      }
     
 
 
@@ -77,7 +79,7 @@ export class Form extends Component {
                     margin="normal"
                     variant="outlined"
                 />
-                    <TextField
+                      <TextField
                     style={style.Input}
                     id="expDate"
                     name="expDate"
@@ -87,7 +89,18 @@ export class Form extends Component {
                     onChange={this.handleChange('expDate')}
                     margin="normal"
                     variant="outlined"
-                /> 
+                />
+                    {/* <TextField
+                    style={style.Input}
+                    id="expDate"
+                    name="expDate"
+                    type="text"
+                    label="expDate"
+                    value={this.state.expDate}
+                    onChange={this.handleChange('expDate')}
+                    margin="normal"
+                    variant="outlined"
+                />  */}
 
                 <TextField
                     style={style.Input}
