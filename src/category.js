@@ -1,3 +1,3 @@
 module.exports = [
-    'flu', 'stomachache','runny nose', 'cough', 'headache', 'earache', 'allergy', 'fever', 'diarrhoea', 'rash', 'backache'
+    'flu', 'stomachache', 'cough', 'headache', 'allergy', 'fever', 'diarrhoea', 'rash', 'backache', 'other'
 ]
