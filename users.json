@@ -1,30 +1,45 @@
 {
   "users": [
     {
-      "id": "",
-      "name": "",
-      "password": "",
-      "medicinesList": [
-        {
-          "name": "",
-          "dateOfExp": "",
-          "despription": "",
-          "category": ""
-        }
-      ]
-    },
-    {
       "name": "ewa",
       "password": "ewa",
-      "id": "8tPjo6J",
-      "medicinesList": [
-        {
-          "name": "aspiryna",
+      "id": "ewa"
+    },
+    {
+      "name": "anna",
+      "password": "anna",
+      "id": "anna"
+     
+    }],
+    "medicinesList": [
+      {"userId" : "ewa",
+        "name": "aspiryna",
+        "dateOfExp": "maj 2019",
+        "description": "",
+        "category": "flu"
+      },
+      {"userId" : "ewa",
+        "name": "nurofen",
+        "dateOfExp": "wrzesień 2019",
+        "description": "Wojtek:3 x 5 ml, Maciek 3 x 3,75 ml",
+        "category": "fever, flu"
+      },
+
+      
+        {"userId" : "anna",
+          "name": "nebudose",
           "dateOfExp": "maj 2019",
           "despription": "",
           "category": "flu"
+        },
+        {"userId" : "anna",
+          "name": "apap",
+          "dateOfExp": "wrzesień 2019",
+          "despription": "3 x 5 ml",
+          "category": "fever"
         }
       ]
-    }
-  ]
+    
+   
+  
 }
