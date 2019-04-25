@@ -14,15 +14,15 @@ class UserList extends Component {
   }
 
   componentDidMount(){
-    fetch(' http://localhost:3004/users/'+ this.props.user).then( resp => {
+    fetch(' http://localhost:3004/users/'+ this.props.user + '/medicinesList').then( resp => {
       if (resp.ok)
        return resp.json();
       else
         throw new Error('Błąd sieci!');
     }).then( data => {
-      console.log('Moje dane:', data.medicinesList);
+      console.log('Moje dane:', data);
       this.setState({
-        medcineList: data.medicinesList
+        medcineList: data
       })
     }).catch( err => {
       console.log('Błąd!', err);

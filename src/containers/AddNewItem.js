@@ -40,11 +40,26 @@ export class AddNewItem extends Component {
   handleClick =(e) =>{
     e.preventDefault();
     var newItem ={
+      userId: this.props.user,
       name: this.state.name,
       expDate: this.state.expDate,
       description: this.state.description,
       category: this.state.category
     }
+
+    fetch(' http://localhost:3004/users/'+ this.props.user + '/medicinesList',{
+      method: "POST",
+      body: JSON.stringify(newItem),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+    }).then(response => {
+      response.json().then(data =>{
+        console.log("Successful" + data);
+        
+      })
+  })
   }
 
 
