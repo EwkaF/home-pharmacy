@@ -10,19 +10,19 @@ export class AddNewMedcine extends Component {
         }
     }
 
-    handleClick = () => {
+    handleToggle = () => {
         this.setState({ 
             open: !this.state.open });
       };
   render() {
     return (
         <div>
-        <Button variant="outlined" color="primary" onClick={this.handleClick}>
+        <Button variant="outlined" color="primary" onClick={this.handleToggle}>
           Add new medcine
         </Button>
         <Dialog
           open={this.state.open}
-          onClose={this.handleClose}
+          onClose={this.handleToggle}
          
         >
           <DialogTitle id="form-dialog-title">Add new medcine
@@ -31,16 +31,16 @@ export class AddNewMedcine extends Component {
             <DialogContentText>
               Enter your new medcines details
             </DialogContentText>
-            <Form />
+            <Form user={this.props.user} onSubmit={this.handleSubmit}/>
           </DialogContent>
-          <DialogActions>
+          {/* <DialogActions>
             <Button onClick={this.handleClick} color="primary">
               Cancel
             </Button>
             <Button onClick={this.handleClick} color="primary">
               Add
             </Button>
-          </DialogActions>
+          </DialogActions> */}
         </Dialog>
       </div>
     )
