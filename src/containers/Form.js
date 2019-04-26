@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { TextField, FormControl, InputLabel, Select, Input,MenuItem, Grid, Typography } from '@material-ui/core';
+import { TextField, FormControl, InputLabel, Select, Input, MenuItem, Grid, Button, Typography } from '@material-ui/core';
 import category from '../category'
 
 const style = {
@@ -15,7 +15,7 @@ export class Form extends Component {
         this.state = {
             name: "",
             expDate: "",
-            description:"",
+            description: "",
             category: [],
             warnings: ''
         };
@@ -32,32 +32,37 @@ export class Form extends Component {
         this.setState({ category: event.target.value });
     };
 
-
-    handleClick =(e) =>{
+    handleSubmit = (e) =>{
         e.preventDefault();
-        var newItem ={
-          userId: this.props.user,
-          name: this.state.name,
-          expDate: this.state.expDate,
-          description: this.state.description,
-          category: this.state.category
+          // TODO: validate
+          this.props.onSubmit()
+    }
+
+    handleClick = (e) => {
+        e.preventDefault();
+        var newItem = {
+            userId: this.props.user,
+            name: this.state.name,
+            expDate: this.state.expDate,
+            description: this.state.description,
+            category: this.state.category
         }
-    
-        fetch(' http://localhost:3004/users/'+ this.props.user + '/medicinesList',{
-          method: "POST",
-          body: JSON.stringify(newItem),
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
+
+        fetch(' http://localhost:3004/users/' + this.props.user + '/medicinesList', {
+            method: "POST",
+            body: JSON.stringify(newItem),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
         }).then(response => {
-          response.json().then(data =>{
-            console.log("Successful" + data);
-            
-          })
-      })
-      }
-    
+            response.json().then(data => {
+                console.log("Successful" + data);
+
+            })
+        })
+    }
+
 
 
     render() {
@@ -79,7 +84,7 @@ export class Form extends Component {
                     margin="normal"
                     variant="outlined"
                 />
-                      <TextField
+                <TextField
                     style={style.Input}
                     id="expDate"
                     name="expDate"
@@ -90,17 +95,6 @@ export class Form extends Component {
                     margin="normal"
                     variant="outlined"
                 />
-                    {/* <TextField
-                    style={style.Input}
-                    id="expDate"
-                    name="expDate"
-                    type="text"
-                    label="expDate"
-                    value={this.state.expDate}
-                    onChange={this.handleChange('expDate')}
-                    margin="normal"
-                    variant="outlined"
-                />  */}
 
                 <TextField
                     style={style.Input}
@@ -133,9 +127,13 @@ export class Form extends Component {
                     </Select>
                 </FormControl>
 
-                {/* <Button variant="contained"  color="primary" onClick={this.handleClick}>
-        Submit
-      </Button> */}
+                 <Button
+        color="primary"
+        // variant="raised"
+        onClick={this.handleSubmit}
+      >
+        Add
+      </Button>
             </Grid>
         )
     }
