@@ -33,9 +33,16 @@ export class Form extends Component {
     };
 
     handleSubmit = (e) =>{
+        var newItems = {
+            userId: this.props.user,
+            name: this.state.name,
+            expDate: this.state.expDate,
+            description: this.state.description,
+            category: this.state.category
+        }
         e.preventDefault();
           // TODO: validate
-          this.props.onSubmit()
+          this.props.onSubmit(newItems)
     }
 
     handleClick = (e) => {

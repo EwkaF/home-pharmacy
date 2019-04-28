@@ -6,8 +6,8 @@ import { Grid, Typography } from '@material-ui/core';
 
 
 class UserList extends Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
     this.state = {
       medcineList: []
     }
@@ -39,7 +39,7 @@ class UserList extends Component {
           alignItems="center">
           <Typography variant="display3" style ={{textTransform:"capitalize"}}>Welcome {this.props.user}!</Typography>
   
-        <AddNewMedcine />
+        <AddNewMedcine user={this.props.user} />
         </Grid>
           <ItemList items={this.state.medcineList}/>
         
