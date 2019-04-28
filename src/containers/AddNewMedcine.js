@@ -3,8 +3,8 @@ import { Dialog, DialogTitle, DialogContent, DialogActions, DialogContentText, B
 import Form from './Form'
 
 export class AddNewMedcine extends Component {
-    constructor(props){
-        super(props);
+    constructor(){
+        super();
         this.state={
             open: false
         }
@@ -14,6 +14,26 @@ export class AddNewMedcine extends Component {
         this.setState({ 
             open: !this.state.open });
       };
+
+      handleSubmit =(details) => {
+        console.log(details)
+        fetch(' http://localhost:3004/users/' + this.props.user + '/medicinesList', {
+          method: "POST",
+          body: JSON.stringify(details),
+          headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+          },
+      }).then(response => response.json())
+      .then(data => {
+              console.log("Successful" + data);
+
+          });
+      
+        this.handleToggle();
+      }
+
+      
   render() {
     return (
         <div>
