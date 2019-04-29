@@ -36,9 +36,9 @@ export class Form extends Component {
         var newItems = {
             userId: this.props.user,
             name: this.state.name,
-            expDate: this.state.expDate,
+            dateOfExp: this.state.expDate,
             description: this.state.description,
-            category: this.state.category
+            // category: this.state.category
         }
         e.preventDefault();
           // TODO: validate
