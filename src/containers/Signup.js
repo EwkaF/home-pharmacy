@@ -25,7 +25,7 @@ class Signup extends Component {
 
     handleAuthentication =() => {
       if ( typeof this.props.authenticated === 'function' ){
-        this.props.authenticated();
+        this.props.authenticated(this.state.name);
       }
     }
     handleFormSubmit = event => {
