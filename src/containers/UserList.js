@@ -13,6 +13,27 @@ class UserList extends Component {
     }
   }
 
+  handleSubmit = (details) => {
+    console.log(details)
+    console.log("Teraz bedzie już dobrze")
+    fetch(' http://localhost:3004/users/' + this.props.user + '/medicinesList', {
+      method: "POST",
+      body: JSON.stringify(details),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        this.setState(prevState => ({
+          medcineList: [...prevState.medcineList,data]
+        }))
+        console.log("Successful" + data);
+
+      });
+  }
+
   componentDidMount(){
     fetch(' http://localhost:3004/users/'+ this.props.user + '/medicinesList').then( resp => {
       if (resp.ok)
@@ -39,7 +60,7 @@ class UserList extends Component {
           alignItems="center">
           <Typography variant="display3" style ={{textTransform:"capitalize"}}>Welcome {this.props.user}!</Typography>
   
-        <AddNewMedcine user={this.props.user} />
+        <AddNewMedcine user={this.props.user} onSubmit={this.handleSubmit}/>
         </Grid>
           <ItemList items={this.state.medcineList}/>
         
