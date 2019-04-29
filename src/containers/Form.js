@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { TextField, FormControl, InputLabel, Select, Input, MenuItem, Grid, Button, Typography } from '@material-ui/core';
+import {  MuiPickersUtilsProvider, DatePicker } from 'material-ui-pickers';
+import DateFnsUtils from '@date-io/date-fns';
 import category from '../category'
 
 const style = {
@@ -32,7 +34,11 @@ export class Form extends Component {
         this.setState({ category: event.target.value });
     };
 
-    handleSubmit = (e) =>{
+    handleDateChange = date => {
+        this.setState({ expDate: date });
+      };
+    
+    handleSubmit = (e) => {
         var newItems = {
             userId: this.props.user,
             name: this.state.name,
@@ -41,8 +47,8 @@ export class Form extends Component {
             // category: this.state.category
         }
         e.preventDefault();
-          // TODO: validate
-          this.props.onSubmit(newItems)
+        // TODO: validate
+        this.props.onSubmit(newItems)
     }
 
     render() {
@@ -64,7 +70,7 @@ export class Form extends Component {
                     margin="normal"
                     variant="outlined"
                 />
-                <TextField
+                {/* <TextField
                     style={style.Input}
                     id="expDate"
                     name="expDate"
@@ -74,7 +80,7 @@ export class Form extends Component {
                     onChange={this.handleChange('expDate')}
                     margin="normal"
                     variant="outlined"
-                />
+                /> */}
 
                 <TextField
                     style={style.Input}
@@ -107,12 +113,23 @@ export class Form extends Component {
                     </Select>
                 </FormControl>
 
-                 <Button
-        color="primary"
-        // variant="raised"
-        onClick={this.handleSubmit}
-      >
-        Add
+                                  <MuiPickersUtilsProvider utils={DateFnsUtils}>
+
+                <DatePicker
+                    margin="normal"
+                    label="Date picker"
+                    value={this.state.expDate}
+                    onChange={this.handleDateChange}
+
+                />
+                </MuiPickersUtilsProvider>
+
+                <Button
+                    color="primary"
+                    // variant="raised"
+                    onClick={this.handleSubmit}
+                >
+                    Add
       </Button>
             </Grid>
         )
