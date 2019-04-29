@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Grid, List, ListItem, ListItemText, ListItemSecondaryAction, IconButton, Edit, Delete, Typography } from '@material-ui/core';
-
+import { Grid, List, ListItem, ListItemText, ListItemSecondaryAction, IconButton,Typography } from '@material-ui/core';
+import { Edit, Delete } from '@material-ui/icons';
 export class ItemList extends Component {
   render() {
     return (
@@ -53,10 +53,10 @@ export class ItemList extends Component {
             />
             <ListItemSecondaryAction>
               <IconButton>
-                {/* <Edit /> */}
+                <Edit />
               </IconButton>
               <IconButton >
-                {/* <Delete /> */}
+                <Delete />
               </IconButton>
             </ListItemSecondaryAction>
           </ListItem>
