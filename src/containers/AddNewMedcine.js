@@ -17,21 +17,21 @@ export class AddNewMedcine extends Component {
   };
 
   handleSubmit = (details) => {
-    console.log(details)
-    fetch(' http://localhost:3004/users/' + this.props.user + '/medicinesList', {
-      method: "POST",
-      body: JSON.stringify(details),
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(response => console.log(response))
-      // response.json())
-      // .then(data => {
-      //   console.log("Successful" + data);
+    this.props.onSubmit(details)
+    // console.log(details)
+    // fetch(' http://localhost:3004/users/' + this.props.user + '/medicinesList', {
+    //   method: "POST",
+    //   body: JSON.stringify(details),
+    //   headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json'
+    //   }
+    // })
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     console.log("Successful" + data);
 
-      // });
+    //   });
 
     this.handleToggle();
   }
