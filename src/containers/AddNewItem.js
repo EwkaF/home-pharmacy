@@ -49,11 +49,11 @@ export class AddNewItem extends Component {
 
     fetch(' http://localhost:3004/users/'+ this.props.user + '/medicinesList',{
       method: "POST",
-      body: JSON.stringify(newItem),
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
+      body: JSON.stringify(newItem)
+      // headers: {
+      //   'Accept': 'application/json',
+      //   'Content-Type': 'application/json'
+      // },
     }).then(response => {
       response.json().then(data =>{
         console.log("Successful" + data);
@@ -77,7 +77,7 @@ export class AddNewItem extends Component {
           type="text"
           label="Name"
           value={this.state.name}
-          //   onChange={this.handleChange('name')}
+          onChange={this.handleChange('name')}
           margin="normal"
           variant="outlined"
         />
@@ -87,7 +87,7 @@ export class AddNewItem extends Component {
           type="expDate"
           label="expiration date"
           value={this.state.name}
-          //   onChange={this.handleChange('name')}
+          onChange={this.handleChange('name')}
           margin="normal"
           variant="outlined"
         />
@@ -98,6 +98,8 @@ export class AddNewItem extends Component {
           label="description"
           multiline
           rows="4"
+          onChange={this.handleChange('description')}
+
           // defaultValue="Default Value"
           // className={classes.textField}
           margin="normal"
