@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { TextField, FormControl, InputLabel, Select, Input, MenuItem, Grid, Button, Typography } from '@material-ui/core';
-import {  MuiPickersUtilsProvider, DatePicker } from 'material-ui-pickers';
+import { MuiPickersUtilsProvider, DatePicker } from 'material-ui-pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import category from '../category'
 
@@ -36,13 +36,13 @@ export class Form extends Component {
 
     handleDateChange = date => {
         this.setState({ expDate: date });
-      };
-    
+    };
+
     handleSubmit = (e) => {
         var newItems = {
             userId: this.props.user,
             name: this.state.name,
-            dateOfExp: this.state.expDate,
+            dateOfExp: this.state.expDate === "" ? "" : this.state.expDate.getMonth() + "/" + this.state.expDate.getFullYear(),
             description: this.state.description,
             // category: this.state.category
         }
@@ -113,15 +113,16 @@ export class Form extends Component {
                     </Select>
                 </FormControl>
 
-                                  <MuiPickersUtilsProvider utils={DateFnsUtils}>
+{/* to do later: date picker */}
+                <MuiPickersUtilsProvider utils={DateFnsUtils}>
 
-                <DatePicker
-                    margin="normal"
-                    label="Date picker"
-                    value={this.state.expDate}
-                    onChange={this.handleDateChange}
+                    <DatePicker
+                        margin="normal"
+                        label="Experation date"
+                        value={this.state.expDate}
+                        onChange={this.handleDateChange}
 
-                />
+                    />
                 </MuiPickersUtilsProvider>
 
                 <Button
