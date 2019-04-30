@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
 import { Grid, List, ListItem, ListItemText, ListItemSecondaryAction, IconButton,Typography } from '@material-ui/core';
 import { Edit, Delete } from '@material-ui/icons';
+
 export class ItemList extends Component {
+
+  // handleClick =() =>{
+  //   this.props.onDelete(id)
+  // }
   render() {
     return (
       <List component="ul">
@@ -24,7 +29,9 @@ export class ItemList extends Component {
         </ListItemText>
       </ListItem>
     
-        {this.props.items.map((element, index) =>
+        {/* {this.props.items.map((element, index) => */}
+        {this.props.items.map(({id,name,description, dateOfExp, category}, index) =>
+
           <ListItem
             key={index}
             button
@@ -34,19 +41,17 @@ export class ItemList extends Component {
               primary={<Grid
                 container>
                   <Grid item xs>
-                 <Typography variant="subtitle1"> {element.name}</Typography>
+                 <Typography variant="subtitle1"> {name}</Typography>
                  </Grid>
                  <Grid item xs>
-                 <Typography variant="subtitle1"> {element.description}</Typography>
+                 <Typography variant="subtitle1"> {description}</Typography>
                  </Grid>
                  <Grid item xs>
-                 <Typography variant="subtitle2"> {element.dateOfExp}</Typography>
+                 <Typography variant="subtitle2"> {dateOfExp}</Typography>
                  </Grid>
                  <Grid item xs>
-                 <Typography variant="subtitle2"> {element.category}</Typography>
+                 <Typography variant="subtitle2"> {category}</Typography>
                  </Grid>
-
-
 
               </Grid>}
 
@@ -55,7 +60,8 @@ export class ItemList extends Component {
               <IconButton>
                 <Edit />
               </IconButton>
-              <IconButton >
+              <IconButton    onClick={() => this.props.onDelete(id)
+}>
                 <Delete />
               </IconButton>
             </ListItemSecondaryAction>
