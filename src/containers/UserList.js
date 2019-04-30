@@ -13,6 +13,9 @@ class UserList extends Component {
     }
   }
 
+  handleDelete = (id) =>{
+console.log(id)
+  }
   handleSubmit = (details) => {
     console.log(details)
     console.log("Teraz bedzie już dobrze")
@@ -62,7 +65,7 @@ class UserList extends Component {
   
         <AddNewMedcine user={this.props.user} onSubmit={this.handleSubmit}/>
         </Grid>
-          <ItemList items={this.state.medcineList}/>
+          <ItemList items={this.state.medcineList} onDelete={this.handleDelete}/>
         
 
 
