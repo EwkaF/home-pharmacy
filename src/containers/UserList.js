@@ -30,11 +30,14 @@ class UserList extends Component {
 
   handleDelete = (id) => {
     console.log(id);
-    this.setState(prevState => ({
-      medcineList: prevState.medcineList.filter(element => element.id !== id)
-    }))
+    fetch('http://localhost:3004/medicinesList/'+ id, {
+      method: "DELETE",
+    })
+    // .then(response => response.json())
+    .then(() => this.loadList());
 
   }
+
   handleSubmit = (details) => {
     console.log(details)
     fetch(' http://localhost:3004/users/' + this.props.user + '/medicinesList', {
@@ -45,31 +48,10 @@ class UserList extends Component {
         'Content-Type': 'application/json'
       }
     }).then(() => this.loadList());
-    
-      // .then(response => response.json())
-      // .then(data => {
-      //   this.setState(prevState => ({
-      //     medcineList: [...prevState.medcineList, data]
-      //   }))
-      //   console.log("Successful" + data);
-
-      // });
   }
 
   componentDidMount() {
     this.loadList()
-    // fetch(' http://localhost:3004/users/' + this.props.user + '/medicinesList').then(resp => {
-    //   if (resp.ok)
-    //     return resp.json();
-    //   else
-    //     throw new Error('Błąd sieci!');
-    // }).then(data => {
-    //   this.setState({
-    //     medcineList: data
-    //   })
-    // }).catch(err => {
-    //   console.log('Błąd!', err);
-    // });
   }
 
   render() {
