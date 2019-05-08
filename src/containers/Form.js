@@ -13,15 +13,27 @@ const style = {
 export class Form extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
             name: "",
-            expDate: "",
+            expDate:"",
             description: "",
             category: [],
             warnings: ''
         };
     }
+
+    componentDidMount(){
+        if (this.props.item !== undefined){
+            this.setState({
+                name: this.props.item.name,
+                expDate:"",
+                description: "",
+                category: [],
+            })
+        }
+    }
+
+
     handleChange = name => event => {
         console.log(event.target.value)
         this.setState({
@@ -70,18 +82,6 @@ export class Form extends Component {
                     margin="normal"
                     variant="outlined"
                 />
-                {/* <TextField
-                    style={style.Input}
-                    id="expDate"
-                    name="expDate"
-                    type="text"
-                    label="expDate"
-                    value={this.state.expDate}
-                    onChange={this.handleChange('expDate')}
-                    margin="normal"
-                    variant="outlined"
-                /> */}
-
                 <TextField
                     style={style.Input}
                     id="description"
@@ -113,7 +113,6 @@ export class Form extends Component {
                     </Select>
                 </FormControl>
 
-{/* to do later: date picker */}
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
 
                     <DatePicker
