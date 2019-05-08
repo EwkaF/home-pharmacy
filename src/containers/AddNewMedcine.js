@@ -18,21 +18,6 @@ export class AddNewMedcine extends Component {
 
   handleSubmit = (details) => {
     this.props.onSubmit(details)
-    // console.log(details)
-    // fetch(' http://localhost:3004/users/' + this.props.user + '/medicinesList', {
-    //   method: "POST",
-    //   body: JSON.stringify(details),
-    //   headers: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json'
-    //   }
-    // })
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     console.log("Successful" + data);
-
-    //   });
-
     this.handleToggle();
   }
 
@@ -54,16 +39,8 @@ export class AddNewMedcine extends Component {
             <DialogContentText>
               Enter your new medcines details
             </DialogContentText>
-            <Form user={this.props.user} onSubmit={this.handleSubmit} />
+            <Form user={this.props.user} onSubmit={this.handleSubmit} button="Add"/>
           </DialogContent>
-          {/* <DialogActions>
-            <Button onClick={this.handleClick} color="primary">
-              Cancel
-            </Button>
-            <Button onClick={this.handleClick} color="primary">
-              Add
-            </Button>
-          </DialogActions> */}
         </Dialog>
       </div>
     )

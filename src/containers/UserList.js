@@ -73,7 +73,7 @@ class UserList extends Component {
 
           <AddNewMedcine user={this.props.user} onSubmit={this.handleSubmit} />
         </Grid>
-        <ItemList editMode={this.state.editMode} items={this.state.medcineList} onDelete={this.handleDelete} onSelectEdit={this.handleEdit}/>
+        <ItemList editMode={this.state.editMode} items={this.state.medcineList} onDelete={this.handleDelete} onSelectEdit={this.handleEdit} onSubmit={this.handleSubmit} user={this.props.user}/>
 
       </div>
     )

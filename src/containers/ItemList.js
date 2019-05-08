@@ -7,6 +7,12 @@ import Item from './Item'
 
 export class ItemList extends Component {
 
+  handleSubmit = (details) => {
+    this.props.onSubmit(details)
+    
+  }
+  
+
   render() {
     return (
     
@@ -56,7 +62,7 @@ export class ItemList extends Component {
                     <Typography variant="subtitle2"> {category}</Typography>
                   </Grid>
 {this.props.editMode
-  ? <Form item={{ name: name, description: description, dateOfExp: dateOfExp, category: category }} />
+  ? <Form item={{ name: name, description: description, dateOfExp: dateOfExp, category: category }} user={this.props.user} button="Save" onSubmit={this.handleSubmit}/>
   : null}
                 </Grid>}
 

@@ -26,9 +26,9 @@ export class Form extends Component {
         if (this.props.item !== undefined){
             this.setState({
                 name: this.props.item.name,
-                expDate:"",
-                description: "",
-                category: [],
+                expDate:this.props.item.dateOfExp,
+                description: this.props.item.description,
+               
             })
         }
     }
@@ -54,10 +54,12 @@ export class Form extends Component {
         var newItems = {
             userId: this.props.user,
             name: this.state.name,
-            dateOfExp: this.state.expDate === "" ? "" : this.state.expDate.getMonth() + "/" + this.state.expDate.getFullYear(),
+            // dateOfExp: this.state.expDate,
+            dateOfExp: this.state.expDate !== "object" ? this.state.expDate : this.state.expDate.getMonth() + "/" + this.state.expDate.getFullYear(),
             description: this.state.description,
             // category: this.state.category
         }
+        console.log(this.state.expDate)
         e.preventDefault();
         // TODO: validate
         this.props.onSubmit(newItems)
@@ -126,10 +128,9 @@ export class Form extends Component {
 
                 <Button
                     color="primary"
-                    // variant="raised"
                     onClick={this.handleSubmit}
                 >
-                    Add
+                    {this.props.button}
       </Button>
             </Grid>
         )
