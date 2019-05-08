@@ -9,7 +9,8 @@ class UserList extends Component {
   constructor() {
     super()
     this.state = {
-      medcineList: []
+      medcineList: [],
+      editMode: false
     }
   }
 
@@ -36,6 +37,12 @@ class UserList extends Component {
     // .then(response => response.json())
     .then(() => this.loadList());
 
+  }
+
+  handleEdit = (id) =>{
+    this.setState({ 
+      editMode: true
+    })
   }
 
   handleSubmit = (details) => {
@@ -66,7 +73,7 @@ class UserList extends Component {
 
           <AddNewMedcine user={this.props.user} onSubmit={this.handleSubmit} />
         </Grid>
-        <ItemList items={this.state.medcineList} onDelete={this.handleDelete} />
+        <ItemList editMode={this.state.editMode} items={this.state.medcineList} onDelete={this.handleDelete} onSelectEdit={this.handleEdit}/>
 
       </div>
     )
