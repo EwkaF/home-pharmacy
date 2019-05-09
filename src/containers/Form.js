@@ -15,7 +15,7 @@ export class Form extends Component {
         super(props);
         this.state = {
             name: "",
-            expDate:"",
+            expDate: new Date(),
             description: "",
             category: [],
             warnings: ''
@@ -117,13 +117,23 @@ export class Form extends Component {
 
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
 
-                    <DatePicker
+                    {/* <DatePicker
                         margin="normal"
                         label="Experation date"
                         value={this.state.expDate}
                         onChange={this.handleDateChange}
 
-                    />
+                    /> */}
+
+                     <DatePicker
+        variant="outlined"
+        openTo="year"
+        views={["year", "month"]}
+        label="Year and Month"
+        helperText="Start from year selection"
+        value={this.state.expDate}
+        onChange={this.handleDateChange}
+      />
                 </MuiPickersUtilsProvider>
 
                 <Button
