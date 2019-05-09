@@ -37,18 +37,23 @@ export class ItemList extends Component {
             </ListItemText>
           </ListItem>
 
-          {this.props.items.map(({ id, name, description, dateOfExp, category }) =>
+          {this.props.items.map(({ id, name, description, dateOfExp, category }) => {
 
             // <Item item={{ id, name, description, dateOfExp, category }} onDelete={this.props.onDelete}
             // key={id} >
-
-              <ListItem
+          let date = new Date (dateOfExp);
+          console.log(date)
+          let shortDate = date.getMonth()+1 +'/' + date.getFullYear();
+          console.log(typeof shortDate)
+          return <ListItem
+             
               key={id}
               button
             //  onClick={() => onSelect(id)}
             >
               <ListItemText
                 primary={<Grid container>
+                 
                   <Grid item xs>
                     <Typography variant="subtitle1"> {name}</Typography>
                   </Grid>
@@ -56,7 +61,7 @@ export class ItemList extends Component {
                     <Typography variant="subtitle1"> {description}</Typography>
                   </Grid>
                   <Grid item xs>
-                    <Typography variant="subtitle2"> {dateOfExp}</Typography>
+                    <Typography variant="subtitle2">{shortDate}</Typography>
                   </Grid>
                   <Grid item xs>
                     <Typography variant="subtitle2"> {category}</Typography>
@@ -78,7 +83,7 @@ export class ItemList extends Component {
             </ListItem> 
               // </Item>
             
-          )}
+})}
         </List>
 
 
