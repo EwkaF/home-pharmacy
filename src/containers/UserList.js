@@ -41,7 +41,7 @@ class UserList extends Component {
 
   handleEdit = (id) =>{
     this.setState({ 
-      editMode: true
+      editMode: !this.state.editMode
     })
   }
 
@@ -73,7 +73,7 @@ class UserList extends Component {
 
           <AddNewMedcine user={this.props.user} onSubmit={this.handleSubmit} />
         </Grid>
-        <ItemList editMode={this.state.editMode} items={this.state.medcineList} onDelete={this.handleDelete} onSelectEdit={this.handleEdit} onSubmit={this.handleSubmit} user={this.props.user}/>
+        <ItemList editMode={this.state.editMode} onSelectEdit={this.handleEdit} items={this.state.medcineList} onDelete={this.handleDelete}  onSubmit={this.handleSubmit} user={this.props.user}/>
 
       </div>
     )
