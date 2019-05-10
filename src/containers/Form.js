@@ -22,13 +22,13 @@ export class Form extends Component {
         };
     }
 
-    componentDidMount(){
-        if (this.props.item !== undefined){
+    componentDidMount() {
+        if (this.props.item !== undefined) {
             this.setState({
                 name: this.props.item.name,
-                expDate:this.props.item.dateOfExp,
+                expDate: this.props.item.dateOfExp,
                 description: this.props.item.description,
-               
+
             })
         }
     }
@@ -63,6 +63,7 @@ export class Form extends Component {
         e.preventDefault();
         // TODO: validate
         this.props.onSubmit(newItems)
+        this.props.onSelectEdit()
     }
 
     render() {
@@ -125,15 +126,15 @@ export class Form extends Component {
 
                     /> */}
 
-                     <DatePicker
-        variant="outlined"
-        openTo="year"
-        views={["year", "month"]}
-        label="Year and Month"
-        helperText="Start from year selection"
-        value={this.state.expDate}
-        onChange={this.handleDateChange}
-      />
+                    <DatePicker
+                        variant="outlined"
+                        openTo="year"
+                        views={["year", "month"]}
+                        label="Year and Month"
+                        helperText="Start from year selection"
+                        value={this.state.expDate}
+                        onChange={this.handleDateChange}
+                    />
                 </MuiPickersUtilsProvider>
 
                 <Button
@@ -141,7 +142,7 @@ export class Form extends Component {
                     onClick={this.handleSubmit}
                 >
                     {this.props.button}
-      </Button>
+                </Button>
             </Grid>
         )
     }
