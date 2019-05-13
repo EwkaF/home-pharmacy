@@ -59,11 +59,11 @@ export class Form extends Component {
             description: this.state.description,
             // category: this.state.category
         }
-        console.log(this.state.expDate)
+    
         e.preventDefault();
         // TODO: validate
         this.props.onSubmit(newItems)
-        this.props.onSelectEdit()
+        // this.props.onSelectEdit()
     }
 
     render() {
