@@ -10,9 +10,9 @@ export class ItemList extends Component {
   handleSubmit = (details) => {
     this.props.onSubmit(details)
   }
-  handleEdit = () => {
-    this.props.onSelectEdit()
-  }
+  // handleEdit = () => {
+  //   this.props.onSelectEdit()
+  // }
 
 
   render() {
@@ -20,6 +20,7 @@ export class ItemList extends Component {
 
 
       <List component="ul">
+
         <ListItem>
           <ListItemText>
             <Grid container>
@@ -39,57 +40,63 @@ export class ItemList extends Component {
           </ListItemText>
         </ListItem>
 
-        {this.props.items.map(({ id, name, description, dateOfExp, category }) => {
+        {this.props.items.map(({ id, name, description, dateOfExp, category }) => 
 
-          // <Item item={{ id, name, description, dateOfExp, category }} onDelete={this.props.onDelete}
-          // key={id} >
-          let date = new Date(dateOfExp);
-          console.log(date)
-          let shortDate = date.getMonth() + 1 + '/' + date.getFullYear();
-          console.log(typeof shortDate)
-          return <ListItem
+          <Item item={{ id, name, description, dateOfExp, category }} 
+          onDelete={this.props.onDelete}
+          key={id}
+          onSelectEdit = {this.props.handleEdit}
+          onSubmit = {this.handleSubmit}
+          user = {this.props.user}
+          button = "Save" />
 
-            key={id}
-            button
+
+          
+          // let date = new Date(dateOfExp);
+          // let shortDate = date.getMonth() + 1 + '/' + date.getFullYear();
+         
+          // return <ListItem
+          //   key={id}
+          //   button
           //  onClick={() => onSelect(id)}
-          >
-            <ListItemText
-              primary={<Grid container>
+          // >
+          //   <ListItemText
+          //     primary={<Grid container>
 
-                <Grid item xs>
-                  <Typography variant="subtitle1"> {name}</Typography>
-                </Grid>
-                <Grid item xs>
-                  <Typography variant="subtitle1"> {description}</Typography>
-                </Grid>
-                <Grid item xs>
-                  <Typography variant="subtitle2">{shortDate}</Typography>
-                </Grid>
-                <Grid item xs>
-                  <Typography variant="subtitle2"> {category}</Typography>
-                </Grid>
-                {this.props.editMode
-                  ? <Form item = {{ name: name, description: description, dateOfExp: dateOfExp, category: category }}
-                    user = {this.props.user}
-                    button = "Save"
-                    onSelectEdit = {this.handleEdit}
-                    onSubmit = {this.handleSubmit} />
-                  : null}
-              </Grid>}
+          //       <Grid item xs>
+          //         <Typography variant="subtitle1"> {name}</Typography>
+          //       </Grid>
+          //       <Grid item xs>
+          //         <Typography variant="subtitle1"> {description}</Typography>
+          //       </Grid>
+          //       <Grid item xs>
+          //         <Typography variant="subtitle2">{shortDate}</Typography>
+          //       </Grid>
+          //       <Grid item xs>
+          //         <Typography variant="subtitle2"> {category}</Typography>
+          //       </Grid>
+          //       {this.props.editMode
+          //         ? <Form item = {{ name: name, description: description, dateOfExp: dateOfExp, category: category }}
+          //           user = {this.props.user}
+          //           button = "Save"
+          //           onSelectEdit = {this.handleEdit}
+          //           onSubmit = {this.handleSubmit} />
+          //         : null}
+          //     </Grid>}
 
-            />
-            <ListItemSecondaryAction>
-              <IconButton onClick={() => this.props.onSelectEdit(id)}>
-                <Edit />
-              </IconButton>
-              <IconButton onClick={() => this.props.onDelete(id)}>
-                <Delete />
-              </IconButton >
-            </ListItemSecondaryAction>
-          </ListItem>
-          // </Item>
+          //   />
+          //   <ListItemSecondaryAction>
+          //     <IconButton onClick={() => this.props.onSelectEdit(id)}>
+          //       <Edit />
+          //     </IconButton>
+          //     <IconButton onClick={() => this.props.onDelete(id)}>
+          //       <Delete />
+          //     </IconButton >
+          //   </ListItemSecondaryAction>
+          // </ListItem>
+  
 
-        })}
+        )}
       </List>
 
 
