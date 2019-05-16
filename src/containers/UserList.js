@@ -10,7 +10,6 @@ class UserList extends Component {
     super()
     this.state = {
       medcineList: [],
-      editMode: false
     }
   }
 
@@ -39,16 +38,26 @@ class UserList extends Component {
 
   }
 
-  handleEdit = (id) =>{
-    this.setState({ 
-      editMode: !this.state.editMode
-    })
-  }
+
 
   handleSubmit = (details) => {
     console.log(details)
     fetch(' http://localhost:3004/users/' + this.props.user + '/medicinesList', {
       method: "POST",
+      body: JSON.stringify(details),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }).then(() => this.loadList());
+  }
+
+
+  // edit item
+  handleSubmitChanges = (details) => {
+    console.log(details)
+    fetch(' http://localhost:3004/medicinesList/' + details.id, {
+      method: "PATCH",
       body: JSON.stringify(details),
       headers: {
         'Accept': 'application/json',
@@ -73,7 +82,13 @@ class UserList extends Component {
 
           <AddNewMedcine user={this.props.user} onSubmit={this.handleSubmit} />
         </Grid>
-        <ItemList editMode={this.state.editMode} onSelectEdit={this.handleEdit} items={this.state.medcineList} onDelete={this.handleDelete}  onSubmit={this.handleSubmit} user={this.props.user}/>
+        <ItemList  
+        onSelectEdit={this.handleEdit} 
+        items={this.state.medcineList} 
+        onDelete={this.handleDelete}  
+        onSubmit={this.handleSubmit} 
+        onSubmitChanges = {this.handleSubmitChanges}
+        user={this.props.user}/>
 
       </div>
     )
