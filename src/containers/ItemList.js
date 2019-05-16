@@ -10,6 +10,10 @@ export class ItemList extends Component {
   handleSubmit = (details) => {
     this.props.onSubmit(details)
   }
+
+  handleSubmitChanges = (details) => {
+    this.props.onSubmitChanges(details)
+  }
   // handleEdit = () => {
   //   this.props.onSelectEdit()
   // }
@@ -45,8 +49,9 @@ export class ItemList extends Component {
           <Item item={{ id, name, description, dateOfExp, category }} 
           onDelete={this.props.onDelete}
           key={id}
-          onSelectEdit = {this.props.handleEdit}
+          // onSelectEdit = {this.props.handleEdit}
           onSubmit = {this.handleSubmit}
+          onSubmitChanges = {this.handleSubmitChanges}
           user = {this.props.user}
           button = "Save" />
 
