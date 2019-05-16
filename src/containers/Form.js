@@ -51,6 +51,7 @@ export class Form extends Component {
     };
 
     handleSubmit = (e) => {
+        console.log("Jest ok")
         var newItems = {
             userId: this.props.user,
             name: this.state.name,
@@ -59,14 +60,54 @@ export class Form extends Component {
             description: this.state.description,
             // category: this.state.category
         }
-    
+
         e.preventDefault();
         // TODO: validate
         this.props.onSubmit(newItems)
         // this.props.onSelectEdit()
     }
 
+    handleSubmitChanges = (e) => {
+        console.log(this.props.editMode)
+        var newItems = {
+            userId: this.props.user,
+            name: this.state.name,
+            // dateOfExp: this.state.expDate,
+            dateOfExp: this.state.expDate !== "object" ? this.state.expDate : this.state.expDate.getMonth() + "/" + this.state.expDate.getFullYear(),
+            description: this.state.description,
+            // category: this.state.category
+            id: this.props.item.id
+        }
+
+        e.preventDefault();
+        // TODO: validate
+        this.props.onSubmitChanges(newItems)
+        // this.props.onSelectEdit()
+    }
+
+
+
     render() {
+
+        let button;
+        if (this.props.editMode === false) {
+            button = <Button
+                color="primary"
+                onClick={this.handleSubmit}
+            >
+                {this.props.button}
+            </Button>
+        }
+        else {
+            button = <Button
+                color="primary"
+                onClick={this.handleSubmitChanges}
+            >
+                {this.props.button}
+            </Button>
+        }
+
+
         return (
             <Grid
                 container
@@ -136,13 +177,28 @@ export class Form extends Component {
                         onChange={this.handleDateChange}
                     />
                 </MuiPickersUtilsProvider>
+                {button}
 
-                <Button
+                {/* <Button
                     color="primary"
                     onClick={this.handleSubmit}
-                >
-                    {this.props.button}
-                </Button>
+                > */}
+                {/* {!this.props.editMode
+                    ? <Button
+                        color="primary"
+                        onClick={this.handleSubmit}
+                    >
+                        {this.props.button}
+                       
+                    </Button>
+
+                    : <Button
+                        color="primary"
+                        onClick = {this.handleSubmitChanges}
+                    >
+                        {this.props.button}
+                    </Button>
+                } */}
             </Grid>
         )
     }
