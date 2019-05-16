@@ -19,6 +19,10 @@ export class Item extends Component {
 
   handleSubmit = (details) => {
     this.props.onSubmit(details)
+  }
+
+  handleSubmitChanges = (details) => {
+    this.props.onSubmitChanges(details)
     this.handleEdit();
   }
 
@@ -46,11 +50,13 @@ export class Item extends Component {
               <Typography variant="subtitle2"> {this.props.item.category}</Typography>
             </Grid>
             {this.state.editMode
-              ? <Form item={{ name: this.props.item.name, description: this.props.item.description, dateOfExp: this.props.item.dateOfExp, category: this.props.item.category }}
+              ? <Form item={{ name: this.props.item.name, description: this.props.item.description, dateOfExp: this.props.item.dateOfExp, category: this.props.item.category, id:this.props.item.id }}
                 user={this.props.user}
                 onSelectEdit = {this.handleEdit}
                 button="Save"
-                onSubmit={this.handleSubmit} />
+                onSubmit={this.handleSubmit}
+                onSubmitChanges = {this.handleSubmitChanges}
+                editMode = {true} />
               : null}
           </Grid>}
 
