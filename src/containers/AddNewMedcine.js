@@ -39,7 +39,11 @@ export class AddNewMedcine extends Component {
             <DialogContentText>
               Enter your new medcines details
             </DialogContentText>
-            <Form user={this.props.user} onSubmit={this.handleSubmit} button="Add"/>
+            <Form 
+            user={this.props.user} 
+            onSubmit={this.handleSubmit}
+            editMode = {false}
+            button="Add"/>
           </DialogContent>
         </Dialog>
       </div>
